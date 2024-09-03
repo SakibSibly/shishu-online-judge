@@ -24,7 +24,7 @@ class Comment(models.Model):
 
 
 class Reaction(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.OneToOneField(Post, on_delete=models.CASCADE)
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
 
