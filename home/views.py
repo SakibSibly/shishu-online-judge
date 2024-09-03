@@ -10,37 +10,29 @@ class HomeView(View):
     def post(self, request):
         obj = request.POST
         main_code = obj['code']
-        self.execute_cpp_code(main_code)
+        return self.execute_cpp_code(main_code)
 
 
     def execute_cpp_code(self, cpp_code):
-    # Step 1: Save the C++ code to a file
         cpp_file = "main.cpp"
         with open(cpp_file, "w") as file:
             file.write(cpp_code)
         
-        # Step 2: Compile the C++ code
         compile_command = ["g++", cpp_file, "-o", "temp_program"]
         compilation = subprocess.run(compile_command, capture_output=True, text=True)
         
-        # Check for compilation errors
         if compilation.returncode != 0:
-            HttpResponse("Compilation failed:")
-            HttpResponse(compilation.stderr)
-            return
+            return HttpResponse("Compilation failed:\n" + compilation.stderr)
         
-        # Step 3: Execute the compiled program
         execution_command = ["./temp_program"]
         execution = subprocess.run(execution_command, capture_output=True, text=True)
         
-        # Step 4: Display the output
-        if execution.returncode == 0:
-            HttpResponse("Program Output:")
-            HttpResponse(execution.stdout)
-        else:
-            HttpResponse("Program failed to execute:")
-            HttpResponse(execution.stderr)
-        
-        # Clean up: Remove temporary files
-        os.remove(cpp_file)
-        os.remove("temp_program")
+
+        try:
+            if execution.returncode == 0:
+                return HttpResponse("Program Output:\n" + execution.stdout)
+            else:
+                return HttpResponse("Program failed to execute:\n" +execution.stderr)
+        finally:
+            os.remove(cpp_file)
+            os.remove("temp_program")
