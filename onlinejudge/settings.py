@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'globals.apps.GlobalsConfig',
     'customtest.apps.CustomtestConfig',
+    'documentations.apps.DocumentationsConfig',
 ]
 
 MIDDLEWARE = [
