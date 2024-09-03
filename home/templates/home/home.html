@@ -1,9 +1,21 @@
 {% extends 'globals/base.html' %}
+{% load static %}
+
 
 {% block content %}
-    <div>
-        <p>
-            Implement home
-        </p>
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <div class="distance" id="blogs">
+        {% if latest_posts %}
+            <ul>
+                {% for item in latest_posts %}
+                    <li>{{ item.title }}</li><br>
+                    <li>{{ item.content }}</li><br>
+                    <p>---</p>
+                    <li>{{ item.created_at }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>No posts yet</h2>
+        {% endif %}
     </div>
 {% endblock %}
