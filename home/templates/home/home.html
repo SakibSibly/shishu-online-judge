@@ -1,61 +1,9 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'globals/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shishu-Online-Judge</title>
-    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
-    <link rel="icon" href="{% static 'image/favicon.ico' %}" type="image/x-icon">
-</head>
-
-<body>
-    <div id="info">
-        <div>
-            <img src="{% static 'home/image/main_logo.jpg' %}" alt="Shishu-Online-Judge">
-            <h1>Shishu Online Judge</h1>
-        </div>
-        <div id="account-action">
-            <ul>
-                <li><a href="#">User</a></li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-    <nav class="distance">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Problems</a></li>
-            <li><a href="#">Contests</a></li>
-            <li><a href="#">Leaderboard</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-   
+{% block content %}
     <div>
-        <label class="distance empasis" for="code">Source Code</label>
-        <form method="POST">
-            {% csrf_token %}
-            <div>
-                <textarea class="distance" name="code" id="code" cols="100" rows="20"></textarea>
-            </div>
-            
-            <div>
-                <label for="language">Language:</label>
-                <select class="distance" name="language" id="language">
-                    <option value="0">C</option>
-                    <option value="1">C++17</option>
-                    <option value="2">Python 3</option>
-                </select>
-            </div>
-            <div>
-                <button id="submit" type="submit">Submit</button>
-            </div>
-        </form>
+        <p>
+            Implement home
+        </p>
     </div>
-        
-    </body>
-    
-    </html>
+{% endblock %}
