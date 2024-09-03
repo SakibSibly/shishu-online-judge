@@ -6,16 +6,11 @@
         <form method="POST">
             {% csrf_token %}
             <div>
-                <textarea class="distance" name="code" id="code" cols="100" rows="20"></textarea>
+                {{ form.code }}
             </div>
-            
             <div>
                 <label class="distance" for="language">Language:</label>
-                <select class="distance" name="language" id="language">
-                    <option value="0">GNU GCC 9.4.0</option>
-                    <option value="1">GNU G++ 9.4.0</option>
-                    <option value="2">Python 3.9.13</option>
-                </select>
+                {{ form.language }}
             </div>
             <div>
                 <button class="distance" id="submit" type="submit">Submit</button>

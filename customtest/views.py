@@ -1,24 +1,33 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
 import os, subprocess
+from .forms import CodeSubmissionForm
 
 
 class CustomTest(View):
     def get(self, request):
-        return render(request, 'customtest/custom.html')
+        form = CodeSubmissionForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'customtest/custom.html', context)
     
     def post(self, request):
-        obj = request.POST
-        main_code = obj['code']
-        language = obj['language']
+        form = CodeSubmissionForm(request.POST)
+        if form.is_valid():
+            obj = request.POST
+            main_code = obj['code']
+            language = obj['language']
 
-        if language == "0":
-            return self.execute_c_code(main_code)
-        elif language == "1":
-            return self.execute_cpp_code(main_code)
-        elif language == "2":
-            return self.execute_python_code(main_code)
-
+            if language == "0":
+                return self.execute_c_code(main_code)
+            elif language == "1":
+                return self.execute_cpp_code(main_code)
+            elif language == "2":
+                return self.execute_python_code(main_code)
+        else:
+            return HttpResponse("Invalid Character found is the source code")
+        
     def execute_c_code(self, cpp_code):
         c_file = "main.c"
         with open(c_file, "w") as file:
@@ -28,6 +37,7 @@ class CustomTest(View):
         compilation = subprocess.run(compile_command, capture_output=True, text=True)
         
         if compilation.returncode != 0:
+            os.remove(c_file)
             return HttpResponse("Compilation failed:\n" + compilation.stderr)
         
         execution_command = ["./main"]
@@ -51,6 +61,7 @@ class CustomTest(View):
         compilation = subprocess.run(compile_command, capture_output=True, text=True)
         
         if compilation.returncode != 0:
+            os.remove(cpp_file)
             return HttpResponse("Compilation failed:\n" + compilation.stderr)
         
         execution_command = ["./main"]
