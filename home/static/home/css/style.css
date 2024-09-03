@@ -12,6 +12,11 @@
     border-radius: 0.3rem;
 }
 
+#blogs ul li {
+    display: block;
+    line-height: 1.5;
+}
+
 .right {
     float: right;
 }

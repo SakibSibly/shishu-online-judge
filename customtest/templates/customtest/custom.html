@@ -2,7 +2,7 @@
 
 {% block content %}
     <div>
-        <label class="distance empasis" for="code">Source Code</label>
+        <label class="distance emphasis" for="code">Source Code</label>
         <form method="POST">
             {% csrf_token %}
             <div>
@@ -10,15 +10,15 @@
             </div>
             
             <div>
-                <label for="language">Language:</label>
+                <label class="distance" for="language">Language:</label>
                 <select class="distance" name="language" id="language">
-                    <option value="0">C</option>
-                    <option value="1">C++17</option>
-                    <option value="2">Python 3</option>
+                    <option value="0">GNU GCC 9.4.0</option>
+                    <option value="1">GNU G++ 9.4.0</option>
+                    <option value="2">Python 3.9.13</option>
                 </select>
             </div>
             <div>
-                <button id="submit" type="submit">Submit</button>
+                <button class="distance" id="submit" type="submit">Submit</button>
             </div>
         </form>
     </div>

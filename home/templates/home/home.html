@@ -9,8 +9,8 @@
             {% for item in latest_posts %}
             <div>
                 <ul>
-                    <li>{{ item.title }}</li><br>
-                    <li>{{ item.content }}</li><br>
+                    <li class="emphasis">{{ item.title }}</li>
+                    <li>{{ item.content }}</li>
                     <p>---</p>
                     <li>Like {{ item.like }} | Dislike {{ item.dislike }}</li><br>
                     <li class="right">{{ item.created_at }}</li>
