@@ -11,6 +11,15 @@ class CodeSubmissionForm(forms.Form):
             'id': 'code'
         })
     )
+    input_data = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={
+            'class': 'distance',
+            'cols': 30,
+            'rows': 10,
+            'id': 'stdinput'
+        })
+    )
     LANGUAGE_CHOICES = [
         ('0', 'GNU GCC 9.4.0'),
         ('1', 'GNU G++ 9.4.0'),
