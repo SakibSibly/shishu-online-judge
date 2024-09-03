@@ -6,6 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: whitesmoke;
     margin: 1.5rem;
 }
 
@@ -27,6 +28,8 @@ img {
 
 nav {
     border: 1px solid black;
+    padding: .3rem;
+    border-radius: 0.2rem;
 }
 
 ul {
