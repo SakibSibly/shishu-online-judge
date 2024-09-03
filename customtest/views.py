@@ -26,7 +26,7 @@ class CustomTest(View):
             elif language == "2":
                 return self.execute_python_code(main_code)
         else:
-            return HttpResponse("Invalid Character found is the source code")
+            return HttpResponse("Invalid Character found in the source code")
         
     def execute_c_code(self, cpp_code):
         c_file = "main.c"
