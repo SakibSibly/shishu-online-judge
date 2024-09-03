@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-#blogs ul {
+#blogs {
     list-style: none;
     margin: 20px 0;
     padding: 1rem;
