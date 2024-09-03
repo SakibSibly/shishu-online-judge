@@ -4,6 +4,8 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
+    like = models.IntegerField(default=0)
+    dislike = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published = models.DateTimeField(default=False)
@@ -21,12 +23,3 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
-
-
-class Reaction(models.Model):
-    post = models.OneToOneField(Post, on_delete=models.CASCADE)
-    like = models.IntegerField(default=0)
-    dislike = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f'{self.like} likes and {self.dislike} dislikes'

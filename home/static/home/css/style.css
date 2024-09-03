@@ -4,10 +4,14 @@
     box-sizing: border-box;
 }
 
-#blogs {
+#blogs ul {
     list-style: none;
     margin: 20px 0;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;
+}
+
+.right {
+    float: right;
 }

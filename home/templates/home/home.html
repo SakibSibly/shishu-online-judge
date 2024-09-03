@@ -12,7 +12,8 @@
                     <li>{{ item.title }}</li><br>
                     <li>{{ item.content }}</li><br>
                     <p>---</p>
-                    <li>{{ item.created_at }}</li>
+                    <li>Like {{ item.like }} | Dislike {{ item.dislike }}</li><br>
+                    <li class="right">{{ item.created_at }}</li>
                 </ul>
             </div>
             {% endfor %}
