@@ -1,4 +1,5 @@
 {% extends 'globals/base.html' %}
+{% load static %}
 
 {% block content %}
     <div>
@@ -17,4 +18,5 @@
             </div>
         </form>
     </div>
+    <script src="{% static 'customtest/js/script.js' %}"></script>
 {% endblock %}

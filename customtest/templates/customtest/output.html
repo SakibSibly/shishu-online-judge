@@ -1,0 +1,11 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'customtest/css/style.css' %}">
+
+    <label for="output-text" class="distance emphasis">Output</label>
+    <pre id="output-text">
+        <p class="distance">{{ output }}</p>
+    </pre>
+{% endblock %}

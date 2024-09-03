@@ -20,15 +20,15 @@ class CustomTest(View):
             language = obj['language']
 
             if language == "0":
-                return self.execute_c_code(main_code)
+                return self.execute_c_code(request, main_code)
             elif language == "1":
-                return self.execute_cpp_code(main_code)
+                return self.execute_cpp_code(request, main_code)
             elif language == "2":
-                return self.execute_python_code(main_code)
+                return self.execute_python_code(request, main_code)
         else:
             return HttpResponse("Invalid Character found in the source code")
         
-    def execute_c_code(self, cpp_code):
+    def execute_c_code(self, request, cpp_code):
         c_file = "main.c"
         with open(c_file, "w") as file:
             file.write(cpp_code)
@@ -38,7 +38,10 @@ class CustomTest(View):
         
         if compilation.returncode != 0:
             os.remove(c_file)
-            return HttpResponse("Compilation failed:\n" + compilation.stderr)
+            context = {
+                'output': "Compilation failed:\n" + compilation.stderr
+            }
+            return render(request, 'customtest/output.html', context)
         
         execution_command = ["./main"]
         execution = subprocess.run(execution_command, capture_output=True, text=True)
@@ -46,13 +49,19 @@ class CustomTest(View):
         if execution.returncode == 0:
             os.remove(c_file)
             os.remove("main")
-            return HttpResponse("Program Output:\n" + execution.stdout)
+            context = {
+                'output': "Program Output:\n" + execution.stdout
+            }
+            return render(request, 'customtest/output.html', context)
         else:
             os.remove(c_file)
             os.remove("main")
-            return HttpResponse("Program failed to execute:\n" +execution.stderr)
+            context = {
+                'output': "Program failed to execute:\n" +execution.stderr
+            }
+            return render(request, 'customtest/output.html', context)
         
-    def execute_cpp_code(self, cpp_code):
+    def execute_cpp_code(self, request, cpp_code):
         cpp_file = "main.cpp"
         with open(cpp_file, "w") as file:
             file.write(cpp_code)
@@ -62,7 +71,10 @@ class CustomTest(View):
         
         if compilation.returncode != 0:
             os.remove(cpp_file)
-            return HttpResponse("Compilation failed:\n" + compilation.stderr)
+            context = {
+                'output': "Compilation failed:\n" + compilation.stderr
+            }
+            return render(request, 'customtest/output.html', context)
         
         execution_command = ["./main"]
         execution = subprocess.run(execution_command, capture_output=True, text=True)
@@ -70,13 +82,19 @@ class CustomTest(View):
         if execution.returncode == 0:
             os.remove(cpp_file)
             os.remove("main")
-            return HttpResponse("Program Output:\n" + execution.stdout)
+            context = {
+                'output': "Program Output:\n" + execution.stdout
+            }
+            return render(request, 'customtest/output.html', context)
         else:
             os.remove(cpp_file)
             os.remove("main")
-            return HttpResponse("Program failed to execute:\n" +execution.stderr)
+            context = {
+                'output': "Program failed to execute:\n" +execution.stderr
+            }
+            return render(request, 'customtest/output.html', context)
 
-    def execute_python_code(self, python_code):
+    def execute_python_code(self, request, python_code):
         python_file = "main.py"
         with open(python_file, "w") as file:
             file.write(python_code)
@@ -86,7 +104,13 @@ class CustomTest(View):
 
         if execution.returncode == 0:
             os.remove(python_file)
-            return HttpResponse("Program Output:\n" + execution.stdout)
+            context = {
+                'output': execution.stdout
+            }
+            return render(request, 'customtest/output.html', context)
         else:
             os.remove(python_file)
-            return HttpResponse("Program failed to execute:\n" + execution.stderr)
+            context = {
+                'output': "Program failed to execute:\n" + execution.stderr
+            }
+            return render(request, 'customtest/output.html', context)
