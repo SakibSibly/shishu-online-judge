@@ -12,11 +12,36 @@ class HomeView(View):
         main_code = obj['code']
         language = obj['language']
 
-        if language == "2":
-            return self.execute_python_code(main_code)
+        if language == "0":
+            return self.execute_c_code(main_code)
         elif language == "1":
             return self.execute_cpp_code(main_code)
+        elif language == "2":
+            return self.execute_python_code(main_code)
 
+    def execute_c_code(self, cpp_code):
+        c_file = "main.c"
+        with open(c_file, "w") as file:
+            file.write(cpp_code)
+        
+        compile_command = ["gcc", c_file, "-o", "main"]
+        compilation = subprocess.run(compile_command, capture_output=True, text=True)
+        
+        if compilation.returncode != 0:
+            return HttpResponse("Compilation failed:\n" + compilation.stderr)
+        
+        execution_command = ["./main"]
+        execution = subprocess.run(execution_command, capture_output=True, text=True)
+        
+        if execution.returncode == 0:
+            os.remove(c_file)
+            os.remove("main")
+            return HttpResponse("Program Output:\n" + execution.stdout)
+        else:
+            os.remove(cpp_file)
+            os.remove("main")
+            return HttpResponse("Program failed to execute:\n" +execution.stderr)
+        
     def execute_cpp_code(self, cpp_code):
         cpp_file = "main.cpp"
         with open(cpp_file, "w") as file:
