@@ -1,0 +1,5 @@
+# Pycache Files
+__pycache__/
+
+# SQLite Files
+*.sqlite3
