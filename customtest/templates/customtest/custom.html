@@ -1,0 +1,25 @@
+{% extends 'globals/base.html' %}
+
+{% block content %}
+    <div>
+        <label class="distance empasis" for="code">Source Code</label>
+        <form method="POST">
+            {% csrf_token %}
+            <div>
+                <textarea class="distance" name="code" id="code" cols="100" rows="20"></textarea>
+            </div>
+            
+            <div>
+                <label for="language">Language:</label>
+                <select class="distance" name="language" id="language">
+                    <option value="0">C</option>
+                    <option value="1">C++17</option>
+                    <option value="2">Python 3</option>
+                </select>
+            </div>
+            <div>
+                <button id="submit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
