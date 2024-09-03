@@ -38,7 +38,7 @@ class HomeView(View):
             os.remove("main")
             return HttpResponse("Program Output:\n" + execution.stdout)
         else:
-            os.remove(cpp_file)
+            os.remove(c_file)
             os.remove("main")
             return HttpResponse("Program failed to execute:\n" +execution.stderr)
         
