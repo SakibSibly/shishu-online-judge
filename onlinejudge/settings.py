@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'globals.apps.GlobalsConfig',
     'customtest.apps.CustomtestConfig',
     'documentations.apps.DocumentationsConfig',
+    'contests.apps.ContestsConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,14 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+    <ul>
+        {% if contests %}
+        {% for contest in contests %}
+            <li><a href="{% url 'contest' contest.id %}">{{ contest.name }}</a></li>
+        {% endfor %}
+        {% else %}
+            <li class="distance">No contests available</li>
+        {% endif %}
+    </ul>
+{% endblock %}
