@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Problems(models.Model):
+class Problem(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     input_description = models.TextField()
@@ -21,7 +21,7 @@ class Problems(models.Model):
 
 
 class InputOutput(models.Model):
-    problem = models.ForeignKey(Problems, on_delete=models.CASCADE)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     input = models.TextField()
     output = models.TextField()
 
