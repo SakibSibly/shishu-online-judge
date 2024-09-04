@@ -2,6 +2,11 @@ from django import forms
 
 
 class CodeSubmissionForm(forms.Form):
+    LANGUAGE_CHOICES = [
+        ('0', 'GNU GCC 9.4.0'),
+        ('1', 'GNU G++ 9.4.0'),
+        ('2', 'Python 3.9.13'),
+    ]
     code = forms.CharField(
         required=True,
         widget=forms.Textarea(attrs={
@@ -20,11 +25,6 @@ class CodeSubmissionForm(forms.Form):
             'id': 'stdinput'
         })
     )
-    LANGUAGE_CHOICES = [
-        ('0', 'GNU GCC 9.4.0'),
-        ('1', 'GNU G++ 9.4.0'),
-        ('2', 'Python 3.9.13'),
-    ]
     language = forms.ChoiceField(
         choices=LANGUAGE_CHOICES,
         widget=forms.Select(attrs={

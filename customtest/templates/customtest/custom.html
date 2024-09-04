@@ -3,19 +3,19 @@
 
 {% block content %}
     <div>
-        <label class="distance emphasis" for="code">Source Code</label>
         <form method="POST">
             {% csrf_token %}
+            <div>
+                <label class="distance emphasis" for="language">Language:</label>
+                {{ form.language }}
+            </div>
+            <label class="distance emphasis" for="code">Source Code</label>
             <div>
                 {{ form.code }}
             </div>
             <div>
                 <label class="distance emphasis" for="stdinput">Standard Input:</label><br>
                 {{ form.input_data }}
-            </div>
-            <div>
-                <label class="distance" for="language">Language:</label>
-                {{ form.language }}
             </div>
             <div>
                 <button class="distance" id="submit" type="submit">Submit</button>
