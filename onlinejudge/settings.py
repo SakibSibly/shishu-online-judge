@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'customtest.apps.CustomtestConfig',
     'documentations.apps.DocumentationsConfig',
     'contests.apps.ContestsConfig',
+    'problems.apps.ProblemsConfig',
 ]
 
 MIDDLEWARE = [

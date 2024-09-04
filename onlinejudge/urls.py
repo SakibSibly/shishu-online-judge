@@ -23,5 +23,6 @@ urlpatterns = [
     path('customtest/', include('customtest.urls')),
     path('documentaion/', include('documentations.urls')),
     path('contests/', include('contests.urls')),
+    path('problems/', include('problems.urls')),
     path('', include('home.urls')),
 ]

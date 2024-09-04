@@ -1,0 +1,14 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+    <ul>
+        {% if problems %}
+        {% for problem in problems %}
+            <li><a href="{% url 'problem' problem.id %}">{{ problem.name }}</a></li>
+        {% endfor %}
+        {% else %}
+            <li class="distance">No problems available</li>
+        {% endif %}
+    </ul>
+{% endblock %}
