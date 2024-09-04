@@ -20,3 +20,19 @@
 .right {
     float: right;
 }
+
+.reaction-container {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.reactions-count {
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.top-margin {
+    margin-top: 1rem;
+}
