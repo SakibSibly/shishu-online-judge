@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block content %}
-<div class="distance">
-    <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
+    <div class="distance" id="individual-problem">
     {% if fetched_problem %}
         {% for problem in fetched_problem %}
-            <li class="emphasis middle">{{ problem.title }}</li><br>
-            <li class="emphasis middle">{{ problem.input_description }}</li><br>
-            <li class="emphasis middle">{{ problem.output_description }}</li><br>
-            <li>{{ problem.description }}</li><br>
-            <li>{{ problem.tags }}</li><br>
-            <li>{{ problem.difficulty }}</li><br>
-            <li>{{ problem.time_limit }}</li><br>
-            <li>{{ problem.memory_limit }}</li><br>
+                <li class="emphasis middle">{{ problem.title }}</li>
+                <li class="middle">{{ problem.input_type }}</li>
+                <li class="middle">{{ problem.output_type }}</li>
+                <li class="middle">{{ problem.time_limit }}</li>
+                <li class="middle">{{ problem.memory_limit }}</li>
+                <li class="middle">{{ problem.difficulty }}</li>
+                <li class="middle">{{ problem.tags }}</li>
+                <li>{{ problem.description }}</li>
 
             {% if problem.note %}
             <li>{{ problem.note }}</li><br>

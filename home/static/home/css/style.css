@@ -6,7 +6,8 @@
 
 #blogs ul {
     list-style: none;
-    margin: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 0.3rem;

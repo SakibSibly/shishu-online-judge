@@ -37,7 +37,7 @@ ul {
     list-style: none;
 }
 
-li {
+nav ul li {
     display: inline-block;
 }
 

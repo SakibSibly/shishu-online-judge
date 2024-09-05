@@ -10,6 +10,10 @@
     display: block;
 }
 
+#individual-problem li {
+    display: block;
+}
+
 #problem-list ul li a {
     color: hsl(240, 95%, 36%);
     text-decoration: none;
