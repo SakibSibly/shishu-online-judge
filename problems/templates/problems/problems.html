@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="distance">
+<div id="problem-list-main" class="distance">
     <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
     {% if fetched_problems %}
         {% for problem in fetched_problems %}
-            <div id="problem-list">
+            <div>
                 <ul>
                     <li>
                         <b>{{ problem.id }}</b>
@@ -16,7 +16,9 @@
             </div>
         {% endfor %}
     {% else %}
-    <li class="distance">No problems available</li>
+    <ul>
+        <li class="distance">No problems available</li>
+    </ul>
     {% endif %}
 </div>
 {% endblock %}

@@ -6,15 +6,16 @@
     border-radius: 0.3rem;
 }
 
-#problem-list ul li {
+#problem-list-main ul li {
     display: block;
+    list-style: none;
 }
 
 #individual-problem li {
     display: block;
 }
 
-#problem-list ul li a {
+#problem-list-main ul li a {
     color: hsl(240, 95%, 36%);
     text-decoration: none;
 }
