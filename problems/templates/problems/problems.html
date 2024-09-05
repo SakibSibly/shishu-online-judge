@@ -2,13 +2,21 @@
 {% load static %}
 
 {% block content %}
-    <ul>
-        {% if problems %}
-        {% for problem in problems %}
-            <li><a href="{% url 'problem' problem.id %}">{{ problem.name }}</a></li>
+<div class="distance">
+    <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
+    {% if fetched_problems %}
+        {% for problem in fetched_problems %}
+            <div id="problem-list">
+                <ul>
+                    <li>
+                        <b>{{ problem.id }}</b>
+                        <a href="{% url 'getproblem' problem.id %}">{{ problem.title }}</a>
+                    </li>
+                </ul>
+            </div>
         {% endfor %}
-        {% else %}
-            <li class="distance">No problems available</li>
-        {% endif %}
-    </ul>
+    {% else %}
+    <li class="distance">No problems available</li>
+    {% endif %}
+</div>
 {% endblock %}

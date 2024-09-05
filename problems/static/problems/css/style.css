@@ -1,0 +1,21 @@
+#problem-list ul {
+    list-style: none;
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+}
+
+#problem-list ul li {
+    display: block;
+}
+
+#problem-list ul li a {
+    color: hsl(240, 95%, 36%);
+    text-decoration: none;
+}
+
+.middle {
+    display: block;
+    text-align: center;
+}

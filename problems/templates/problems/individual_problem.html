@@ -1,0 +1,36 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="distance">
+    <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
+    {% if fetched_problem %}
+        {% for problem in fetched_problem %}
+            <li class="emphasis middle">{{ problem.title }}</li><br>
+            <li class="emphasis middle">{{ problem.input_description }}</li><br>
+            <li class="emphasis middle">{{ problem.output_description }}</li><br>
+            <li>{{ problem.description }}</li><br>
+            <li>{{ problem.tags }}</li><br>
+            <li>{{ problem.difficulty }}</li><br>
+            <li>{{ problem.time_limit }}</li><br>
+            <li>{{ problem.memory_limit }}</li><br>
+
+            {% if problem.note %}
+            <li>{{ problem.note }}</li><br>
+            {% endif %}
+            
+            {% if problem.source %}
+            <li>{{ problem.source }}</li><br>
+            {% endif %}
+
+            {% for test_case in test_cases %}
+            <li>{{ test_case.input }}</li><br>
+            <li>{{ test_case.output }}</li><br>
+            {% endfor %}
+            <li>{{ problem.author }}</li><br>
+            {% endfor %}
+    {% else %}
+    <li class="distance">No problems available</li>
+    {% endif %}
+</div>
+{% endblock %}
