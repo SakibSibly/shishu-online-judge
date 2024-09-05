@@ -13,7 +13,7 @@
                 <li class="middle">{{ problem.memory_limit }}</li>
                 <li class="middle">{{ problem.difficulty }}</li>
                 <li class="middle">{{ problem.tags }}</li>
-                <li>{{ problem.description }}</li>
+                <li>{{ problem.description | linebreaksbr }}</li>
 
             {% if problem.note %}
             <li>{{ problem.note }}</li><br>
