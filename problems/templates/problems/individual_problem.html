@@ -9,13 +9,14 @@
                 <li class="emphasis middle">{{ problem.title }}</li>
                 <li class="middle">{{ problem.input_type }}</li>
                 <li class="middle">{{ problem.output_type }}</li>
-                <li class="middle">{{ problem.time_limit }}</li>
-                <li class="middle">{{ problem.memory_limit }}</li>
+                <li class="middle">time limit per test: {{ problem.time_limit }} second(s)</li>
+                <li class="middle">memory limit per test: {{ problem.memory_limit }} megabytes</li>
                 <li class="middle">{{ problem.difficulty }}</li>
                 <li class="middle">{{ problem.tags }}</li>
                 <li>{{ problem.description | linebreaksbr }}</li>
 
             {% if problem.note %}
+            <li><b>Note:</b></li>
             <li>{{ problem.note }}</li><br>
             {% endif %}
             
@@ -24,7 +25,9 @@
             {% endif %}
 
             {% for test_case in test_cases %}
+            <li><b>Input{{  forloop.counter }}:</b></li>
             <li>{{ test_case.input }}</li><br>
+            <li><b>Output{{  forloop.counter }}:</b></li>
             <li>{{ test_case.output }}</li><br>
             {% endfor %}
             <li>{{ problem.author }}</li><br>
