@@ -24,6 +24,7 @@ class InputOutput(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     input = models.TextField()
     output = models.TextField()
+    is_public = models.BooleanField(default=True)
 
     def __str__(self):
         return self.problem.title
