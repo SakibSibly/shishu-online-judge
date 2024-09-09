@@ -44,14 +44,13 @@ nav ul li {
 #info li a {
     text-decoration: none;
     color: black;
-    padding-left: 1rem;
-    padding-right: 1rem;
 }
 
 nav li a {
     text-decoration: none;
     color: black;
-    padding: 1.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     text-transform: uppercase;
     font-weight: bold;
 }
