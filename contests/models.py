@@ -1,4 +1,5 @@
 from django.db import models
+from problems.models import Problem
 
 
 class Contest(models.Model):
@@ -12,3 +13,11 @@ class Contest(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ContestProblem(models.Model):
+    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    all_problems = models.ManyToManyField(Problem)
+
+    def __str__(self):
+        return self.all_problems[0].title
