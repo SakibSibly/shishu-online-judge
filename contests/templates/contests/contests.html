@@ -2,13 +2,19 @@
 {% load static %}
 
 {% block content %}
+<div class="distance">
     <ul>
-        {% if contests %}
-        {% for contest in contests %}
-            <li><a href="{% url 'contest' contest.id %}">{{ contest.name }}</a></li>
+        {% if all_contests %}
+        {% for contest in all_contests %}
+        <li>
+            <b>
+                {{ contest.id }}
+            </b>
+            <a href="{% url 'fetch_contest' contest.id %}">{{ contest.name }}</a></li>
         {% endfor %}
         {% else %}
-            <li class="distance">No contests available</li>
+        <li class="distance">No contests available</li>
         {% endif %}
     </ul>
+</div>
 {% endblock %}

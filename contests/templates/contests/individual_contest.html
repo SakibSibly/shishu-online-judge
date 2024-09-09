@@ -1,0 +1,20 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="distance">
+        <ul>
+            {% if fetched_contest %}
+            {% for problem in fetched_contest %}
+            <li>
+                <b>
+                    {{ problem.all_problems.id }}
+                </b>
+                <a href="{% url 'getproblem' problem.all_problems.id %}">{{ problem.all_problems }}</a></li>
+            {% endfor %}
+            {% else %}
+            <li class="distance">No contests available</li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}

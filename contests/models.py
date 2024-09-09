@@ -17,7 +17,7 @@ class Contest(models.Model):
 
 class ContestProblem(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    all_problems = models.ManyToManyField(Problem)
+    all_problems = models.ForeignKey(Problem, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.all_problems[0].title
+        return self.all_problems.title
