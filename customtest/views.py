@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from django.views import View
-import os, subprocess
 from .forms import CodeSubmissionForm
+import os, subprocess
+import time
 
 
 class CustomTest(View):
@@ -35,12 +36,15 @@ class CustomTest(View):
             file.write(cpp_code)
         
         compile_command = ["gcc", c_file, "-o", "main"]
+        start_time = time.perf_counter()
         compilation = subprocess.run(compile_command, capture_output=True, text=True)
+        end_time = time.perf_counter()
         
         if compilation.returncode != 0:
             os.remove(c_file)
             context = {
-                'output': "Compilation failed:\n" + compilation.stderr
+                'output': "Compilation failed:\n" + compilation.stderr,
+                'time': "Compilation time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         
@@ -51,14 +55,16 @@ class CustomTest(View):
             os.remove(c_file)
             os.remove("main")
             context = {
-                'output': execution.stdout
+                'output': execution.stdout,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         else:
             os.remove(c_file)
             os.remove("main")
             context = {
-                'output': "Program failed to execute:\n" + execution.stderr
+                'output': "Program failed to execute:\n" + execution.stderr,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         
@@ -68,12 +74,15 @@ class CustomTest(View):
             file.write(cpp_code)
         
         compile_command = ["g++", cpp_file, "-o", "main"]
+        start_time = time.perf_counter()
         compilation = subprocess.run(compile_command, capture_output=True, text=True)
+        end_time = time.perf_counter()
         
         if compilation.returncode != 0:
             os.remove(cpp_file)
             context = {
-                'output': "Compilation failed:\n" + compilation.stderr
+                'output': "Compilation failed:\n" + compilation.stderr,
+                'time': "Compilation time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         
@@ -84,14 +93,16 @@ class CustomTest(View):
             os.remove(cpp_file)
             os.remove("main")
             context = {
-                'output': execution.stdout
+                'output': execution.stdout,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         else:
             os.remove(cpp_file)
             os.remove("main")
             context = {
-                'output': "Program failed to execute:\n" + execution.stderr
+                'output': "Program failed to execute:\n" + execution.stderr,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
 
@@ -101,17 +112,21 @@ class CustomTest(View):
             file.write(python_code)
         
         execution_command = ["python", python_file]
+        start_time = time.perf_counter()
         execution = subprocess.run(execution_command, input=input_data, capture_output=True, text=True)
+        end_time = time.perf_counter()
 
         if execution.returncode == 0:
             os.remove(python_file)
             context = {
-                'output': execution.stdout
+                'output': execution.stdout,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
         else:
             os.remove(python_file)
             context = {
-                'output': "Program failed to execute:\n" + execution.stderr
+                'output': "Program failed to execute:\n" + execution.stderr,
+                'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
             }
             return render(request, 'customtest/output.html', context)
