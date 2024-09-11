@@ -1,6 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.views import View
 from .models import Problem, InputOutput
+from customtest.forms import CodeSubmissionForm
+from globals.executor import CodeExecutor
+import time
 
 
 class ProblemsView(View):
@@ -16,7 +19,42 @@ class FetchProblemView(View):
     def get(self, request, id):
         problems = Problem.objects.filter(id=id)
         test_cases = InputOutput.objects.filter(problem=problems[0].id)
-        return render(request, 'problems/individual_problem.html', {'fetched_problem': problems, 'test_cases': test_cases})
+        context = {
+            'fetched_problem': problems,
+            'test_cases': test_cases,
+            'form': CodeSubmissionForm()
+        }
+        return render(request, 'problems/individual_problem.html', context)
     
-    def post(self, request, number):
-        pass
+    def post(self, request, id):
+        source_code = request.POST['code']
+        language = request.POST['language']
+        ios = InputOutput.objects.filter(problem=Problem.objects.filter(id=id)[0])
+        test_cases = []
+        for element in ios:
+            test_cases.append([element.input, element.output, element.problem.time_limit])
+        
+
+        for case in test_cases:
+            executor = CodeExecutor()
+            start_time = time.time()
+            if language == "0":
+                output = executor.execute_c_code(source_code, case[0], case[2])
+            elif language == "1":
+                output = executor.execute_cpp_code(source_code, case[0], case[2])
+            elif language == "2":
+                output = executor.execute_python_code(source_code, case[0], case[2])
+            end_time = time.time()
+
+            if output.strip() != case[1].strip():
+                context = {
+                    'output': f"Test case failed:\nInput: {case[0]}\nExpected: {case[1]} \n\n\nReceived: {output}",
+                    'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+                }
+                return render(request, 'customtest/output.html', context)
+    
+        context = {
+            'output': "All test cases passed",
+            'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+        }
+        return render(request, 'customtest/output.html', context)

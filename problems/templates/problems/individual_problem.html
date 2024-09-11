@@ -32,6 +32,22 @@
             {% endfor %}
             <li>{{ problem.author }}</li><br>
             {% endfor %}
+
+            <form method="POST">
+                {% csrf_token %}
+                <div>
+                    <label for="language">Language:</label>
+                    {{ form.language }}
+                </div>
+                <label for="code">Source Code</label>
+                <div>
+                    {{ form.code }}
+                </div>
+                <div>
+                    <button id="submit" type="submit">Submit</button>
+                </div>
+            </form>
+
     {% else %}
     <li class="distance">No problems available</li>
     {% endif %}
