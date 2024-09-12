@@ -14,7 +14,7 @@ class CodeExecutor():
     This class allows you to execute the code and returns the result as string.
     """
 
-    def execute_c_code(self, source_code: str, input_data: str, time_limit: float) -> list:
+    def execute_c_code(self, source_code: str, input_data: str, time_limit: float) -> list[str]:
         c_file = "main.c"
         with open(c_file, "w") as file:
             file.write(source_code)
@@ -47,14 +47,14 @@ class CodeExecutor():
         if execution.returncode == 0:
             os.remove(c_file)
             os.remove("main")
-            return [execution.stdout, round(end_time - start_time, 3)]
+            return [execution.stdout, str(round(end_time - start_time, 3))]
         else:
             os.remove(c_file)
             os.remove("main")
             return ["Program failed to execute:\n" + execution.stderr, "N/A"]
 
 
-    def execute_cpp_code(self, source_code: str, input_data: str, time_limit: float) -> list:
+    def execute_cpp_code(self, source_code: str, input_data: str, time_limit: float) -> list[str]:
         cpp_file = "main.cpp"
         with open(cpp_file, "w") as file:
             file.write(source_code)
@@ -87,14 +87,14 @@ class CodeExecutor():
         if execution.returncode == 0:
             os.remove(cpp_file)
             os.remove("main")
-            return [execution.stdout, round(end_time - start_time, 3)]
+            return [execution.stdout, str(round(end_time - start_time, 3))]
         else:
             os.remove(cpp_file)
             os.remove("main")
             return ["Program failed to execute:\n" + execution.stderr, "N/A"]
         
 
-    def execute_python_code(self, source_code: str, input_data: str, time_limit: float) -> list:
+    def execute_python_code(self, source_code: str, input_data: str, time_limit: float) -> list[str]:
         python_file = "main.py"
         with open(python_file, "w") as file:
             file.write(source_code)
@@ -117,7 +117,7 @@ class CodeExecutor():
         
         if execution.returncode == 0:
             os.remove(python_file)
-            return [execution.stdout, round(end_time - start_time, 3)]
+            return [execution.stdout, str(round(end_time - start_time, 3))]
         else:
             os.remove(python_file)
             return ["Program failed to execute:\n" + execution.stderr, "N/A"]
