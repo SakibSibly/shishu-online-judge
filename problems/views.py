@@ -43,11 +43,16 @@ class FetchProblemView(View):
             elif language == "2":
                 output = executor.execute_python_code(source_code, case[0], case[2])
 
-            if output[0].strip() != case[1].strip():
+            if executor.compare_outputs(output[0].strip(), case[1].strip()) == False:
                 context = {
-                    'output': f"Test case failed:\nInput: {case[0]}\nExpected: {case[1]} \n\n\nReceived: {output}",
+                    'output': f"Test case failed:\n\nInput:\n{case[0]}\n\nExpected:\n{case[1]} \n\n\nReceived:\n{output[0]}",
                     'time': "Execution time: " + output[1] + " seconds"
                 }
+                with open("test.txt", "w+") as file:
+                    file.write(output[0])
+                with open("test2.txt", "w+") as file:
+                    file.write(case[1])
+                
                 return render(request, 'customtest/output.html', context)
     
         context = {

@@ -121,3 +121,9 @@ class CodeExecutor():
         else:
             os.remove(python_file)
             return ["Program failed to execute:\n" + execution.stderr, "N/A"]
+
+
+    def compare_outputs(self, file1: str, file2: str) -> bool:
+        content1 = file1.splitlines()
+        content2 = file2.splitlines()
+        return content1 == content2

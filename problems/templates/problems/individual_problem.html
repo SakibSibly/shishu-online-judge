@@ -24,14 +24,17 @@
             <li>{{ problem.source }}</li><br>
             {% endif %}
 
-            {% for test_case in test_cases %}
-            <li><b>Input{{  forloop.counter }}:</b></li>
-            <li>{{ test_case.input }}</li><br>
-            <li><b>Output{{  forloop.counter }}:</b></li>
-            <li>{{ test_case.output }}</li><br>
-            {% endfor %}
-            <li>{{ problem.author }}</li><br>
-            {% endfor %}
+            <pre>
+                {% for test_case in test_cases %}
+                <li><b>Input {{  forloop.counter }}:</b></li>
+                <li>{{ test_case.input }}</li>
+                <li><b>Output {{  forloop.counter }}:</b></li>
+                <li>{{ test_case.output }}</li>
+                {% endfor %}
+            </pre>
+            <li>Author: </li>
+                <li>{{ problem.author }}</li><br>
+                {% endfor %}
 
             <form method="POST">
                 {% csrf_token %}
