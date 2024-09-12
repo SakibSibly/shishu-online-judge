@@ -3,3 +3,6 @@ __pycache__/
 
 # SQLite Files
 *.sqlite3
+
+# Text Files
+*.txt
