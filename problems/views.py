@@ -3,7 +3,6 @@ from django.views import View
 from .models import Problem, InputOutput
 from customtest.forms import CodeSubmissionForm
 from globals.executor import CodeExecutor
-import time
 
 
 class ProblemsView(View):
@@ -37,24 +36,22 @@ class FetchProblemView(View):
 
         for case in test_cases:
             executor = CodeExecutor()
-            start_time = time.time()
             if language == "0":
                 output = executor.execute_c_code(source_code, case[0], case[2])
             elif language == "1":
                 output = executor.execute_cpp_code(source_code, case[0], case[2])
             elif language == "2":
                 output = executor.execute_python_code(source_code, case[0], case[2])
-            end_time = time.time()
 
-            if output.strip() != case[1].strip():
+            if output[0].strip() != case[1].strip():
                 context = {
                     'output': f"Test case failed:\nInput: {case[0]}\nExpected: {case[1]} \n\n\nReceived: {output}",
-                    'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+                    'time': "Execution time: " + output[1] + " seconds"
                 }
                 return render(request, 'customtest/output.html', context)
     
         context = {
             'output': "All test cases passed",
-            'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+            'time': "Execution time: " + output[1] + " seconds"
         }
         return render(request, 'customtest/output.html', context)

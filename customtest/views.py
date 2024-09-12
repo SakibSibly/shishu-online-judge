@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse
 from django.views import View
 from .forms import CodeSubmissionForm
 from globals.executor import CodeExecutor
-import time
 
 
 class CustomTest(View):
@@ -25,28 +24,22 @@ class CustomTest(View):
             context = {}
 
             if language == "0":
-                start_time = time.time()
                 output = executor.execute_c_code(source_code, input_data, 1)
-                end_time = time.time()
                 context = {
-                    'output': output,
-                    'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+                    'output': output[0],
+                    'time': "Execution time: " + output[1] + " seconds"
                 }
             elif language == "1":
-                start_time = time.time()
                 output = executor.execute_cpp_code(source_code, input_data, 1)
-                end_time = time.time()
                 context = {
-                    'output': output,
-                    'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+                    'output': output[0],
+                    'time': "Execution time: " + output[1] + " seconds"
                 }
             elif language == "2":
-                start_time = time.time()
                 output = executor.execute_python_code(source_code, input_data, 1)
-                end_time = time.time()
                 context = {
-                    'output': output,
-                    'time': "Execution time: " + str(round(end_time - start_time, 4)) + " seconds"
+                    'output': output[0],
+                    'time': "Execution time: " + output[1] + " seconds"
                 }
                 
             return render(request, 'customtest/output.html', context)
