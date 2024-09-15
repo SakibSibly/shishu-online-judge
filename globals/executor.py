@@ -24,7 +24,7 @@ class CodeExecutor():
         
         if compilation.returncode != 0:
             os.remove(c_file)
-            return ["Compilation failed:\n" + compilation.stderr, "N/A"]
+            return ["Compilation failed:\n" + compilation.stderr, "0"]
         
         try:
             execution_command = ["./main"]
@@ -32,17 +32,20 @@ class CodeExecutor():
             execution = subprocess.run(execution_command, timeout=time_limit, input=input_data, capture_output=True, text=True)
             end_time = time.time()
         except subprocess.TimeoutExpired:
+            end_time = time.time()
             os.remove(c_file)
             os.remove("main")
-            return ["Time Limit Exceeded!", "N/A"]
+            return ["Time Limit Exceeded!", str(round(end_time - start_time, 3))]
         except subprocess.CalledProcessError:
+            end_time = time.time()
             os.remove(c_file)
             os.remove("main")
-            return ["Program failed to execute", "N/A"]
+            return ["Program failed to execute", str(round(end_time - start_time, 3))]
         except Exception as e:
+            end_time = time.time()
             os.remove(c_file)
             os.remove("main")
-            return ["An error occurred: " + str(e), "N/A"]
+            return ["An error occurred: " + str(e), str(round(end_time - start_time, 3))]
         
         if execution.returncode == 0:
             os.remove(c_file)
@@ -51,7 +54,7 @@ class CodeExecutor():
         else:
             os.remove(c_file)
             os.remove("main")
-            return ["Program failed to execute:\n" + execution.stderr, "N/A"]
+            return ["Program didn't returned 0!\n" + execution.stderr, str(round(end_time - start_time, 3))]
 
 
     def execute_cpp_code(self, source_code: str, input_data: str, time_limit: float) -> list[str]:
@@ -64,7 +67,7 @@ class CodeExecutor():
         
         if compilation.returncode != 0:
             os.remove(cpp_file)
-            return ["Compilation failed:\n" + compilation.stderr, "N/A"]
+            return ["Compilation failed:\n" + compilation.stderr, "0"]
         
         try:
             execution_command = ["./main"]
@@ -72,17 +75,20 @@ class CodeExecutor():
             execution = subprocess.run(execution_command, timeout=time_limit, input=input_data, capture_output=True, text=True)
             end_time = time.time()
         except subprocess.TimeoutExpired:
+            end_time = time.time()
             os.remove(cpp_file)
             os.remove("main")
-            return ["Time Limit Exceeded!", "N/A"]
+            return ["Time Limit Exceeded!", str(round(end_time - start_time, 3))]
         except subprocess.CalledProcessError:
+            end_time = time.time()
             os.remove(cpp_file)
             os.remove("main")
-            return ["Program failed to execute", "N/A"]
+            return ["Program failed to execute", str(round(end_time - start_time, 3))]
         except Exception as e:
+            end_time = time.time()
             os.remove(cpp_file)
             os.remove("main")
-            return ["An error occurred: " + str(e), "N/A"]
+            return ["An error occurred: " + str(e), str(round(end_time - start_time, 3))]
         
         if execution.returncode == 0:
             os.remove(cpp_file)
@@ -91,7 +97,7 @@ class CodeExecutor():
         else:
             os.remove(cpp_file)
             os.remove("main")
-            return ["Program failed to execute:\n" + execution.stderr, "N/A"]
+            return ["Program didn't returned 0!\n" + execution.stderr, str(round(end_time - start_time, 3))]
         
 
     def execute_python_code(self, source_code: str, input_data: str, time_limit: float) -> list[str]:
@@ -106,21 +112,24 @@ class CodeExecutor():
             execution = subprocess.run(execution_command, timeout=time_limit, input=input_data, capture_output=True, text=True)
             end_time = time.time()
         except subprocess.TimeoutExpired:
+            end_time = time.time()
             os.remove(python_file)
-            return ["Time Limit Exceeded!", "N/A"]
+            return ["Time Limit Exceeded!", str(round(end_time - start_time, 3))]
         except subprocess.CalledProcessError:
+            end_time = time.time()
             os.remove(python_file)
-            return ["Program failed to execute", "N/A"]
+            return ["Program failed to execute", str(round(end_time - start_time, 3))]
         except Exception as e:
+            end_time = time.time()
             os.remove(python_file)
-            return ["An error occurred: " + str(e), "N/A"]
+            return ["An error occurred: " + str(e), str(round(end_time - start_time, 3))]
         
         if execution.returncode == 0:
             os.remove(python_file)
             return [execution.stdout, str(round(end_time - start_time, 3))]
         else:
             os.remove(python_file)
-            return ["Program failed to execute:\n" + execution.stderr, "N/A"]
+            return ["Program didn't returned 0!\n" + execution.stderr, str(round(end_time - start_time, 3))]
 
 
     def compare_outputs(self, file1: str, file2: str) -> bool:
