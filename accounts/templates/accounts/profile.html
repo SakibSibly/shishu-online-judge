@@ -1,0 +1,28 @@
+{% extends 'globals/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div>
+        <h2>Profile</h2>
+        <div>
+            <h3>{{ user.username }}</h3>
+            <h5>{{ user.email }}</h5>
+        </div>
+        <div>
+            <h3>Personal Information</h3>
+            <p><b>First Name: {{ user.first_name }}</b></p>
+            <p><b>Last Name: {{ user.last_name }}</b></p>
+            <p><b>Country: {{ user.profile.country }}</b></p>
+            <p><b>City: {{ user.profile.city }}</b></p>
+            <p><b>Address: {{ user.profile.address }}</b></p>
+            <p><b>Phone: {{ user.profile.phone }}</b></p>
+        </div>
+        <div>
+            <h3>Account Information</h3>
+            <p><b>Username: {{ user.username }}</b></p>
+            <p><b>Email: {{ user.email }}</b></p>
+            <p><b>Account Created: {{ user.date_joined }}</b></p>
+            <p><b>Last Login: {{ user.last_login }}</b></p>
+        </div>
+    </div>
+{% endblock %}
