@@ -20,9 +20,9 @@
         <div id="account-action">
             <ul>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'profile' user.username %}">{{ user.username }}</a></li>
+                    <li><a href="{% url 'profile' request.user.username %}">{{ request.user.username }}</a></li>
                 {% else %}
-                <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                 {% endif %}
 
                 <li><a href="{% url 'logout' %}">Logout</a></li>
