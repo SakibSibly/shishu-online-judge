@@ -23,7 +23,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
-    t_shirt_size = models.CharField(max_length=10)
+    t_shirt_size = models.CharField(null=True, max_length=10)
     country = models.CharField(max_length=50)
     city = models.CharField(null=True, max_length=50)
     university = models.CharField(max_length=50)
