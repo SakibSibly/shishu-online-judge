@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home.apps.HomeConfig',
-    'globals.apps.GlobalsConfig',
+    'accounts.apps.AccountsConfig',
+    'contests.apps.ContestsConfig',
     'customtest.apps.CustomtestConfig',
     'documentations.apps.DocumentationsConfig',
-    'contests.apps.ContestsConfig',
+    'globals.apps.GlobalsConfig',
+    'home.apps.HomeConfig',
     'problems.apps.ProblemsConfig',
 ]
 
@@ -127,3 +128,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
