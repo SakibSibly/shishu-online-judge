@@ -24,6 +24,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(unique=True)
     t_shirt_size = models.CharField(max_length=10)
+    country = models.CharField(max_length=50)
+    city = models.CharField(null=True, max_length=50)
     university = models.CharField(max_length=50)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)  # Regular user, not staff by default

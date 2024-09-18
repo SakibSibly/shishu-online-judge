@@ -1,18 +1,30 @@
 from django import forms
 
 
-class UserLoginForm(forms.Form):
-    username = forms.CharField(required=True, label='Username')
-    password = forms.CharField(required=True, label='Password', widget=forms.PasswordInput)
-
-
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(required=True, label='Username')
-    email = forms.EmailField(required=True, label='Email')
+    name = forms.CharField(
+        required=True,
+        label='Name',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'name'
+        })
+        )
+    username = forms.CharField(
+        required=True,
+        label='Username',
+        widget=forms.TextInput(attrs={
+            'placeholder': 'username'
+        })
+        )
+    email = forms.EmailField(
+        required=True,
+        label='Email',
+        widget=forms.EmailInput(attrs={
+            'placeholder': 'example@email.com'
+        })
+        )
     password = forms.CharField(required=True, label='Password', widget=forms.PasswordInput)
     confirm_password = forms.CharField(required=True, label='Confirm Password', widget=forms.PasswordInput)
-    first_name = forms.CharField(required=True, label='First Name')
-    last_name = forms.CharField(required=True, label='Last Name')
     country = forms.CharField(required=True, label='Country')
     city = forms.CharField(required=True, label='City')
     institution = forms.CharField(required=True, label='Institution')

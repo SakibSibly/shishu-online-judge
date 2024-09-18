@@ -2,27 +2,25 @@
 {% load static %}
 
 {% block content %}
-    <div>
+    <div class="distance">
         <h2>Profile</h2>
-        <div>
-            <h3>{{ user.username }}</h3>
-            <h5>{{ user.email }}</h5>
+        <div class="distance">
+            <p><b>Username: </b> {{ user.username }}</p>
+            <p><b>Email: </b>{{ user.email }}</p>
         </div>
-        <div>
+        <div class="distance">
             <h3>Personal Information</h3>
-            <p><b>First Name: {{ user.first_name }}</b></p>
-            <p><b>Last Name: {{ user.last_name }}</b></p>
-            <p><b>Country: {{ user.profile.country }}</b></p>
-            <p><b>City: {{ user.profile.city }}</b></p>
-            <p><b>Address: {{ user.profile.address }}</b></p>
-            <p><b>Phone: {{ user.profile.phone }}</b></p>
+            <p><b>First Name:</b> {{ user.first_name }}</p>
+            <p><b>Last Name:</b> {{ user.last_name }}</p>
+            <p><b>Country:</b> {{ user.profile.country }}</p>
+            <p><b>City:</b> {{ user.profile.city }}</p>
+            <p><b>Address:</b> {{ user.profile.address }}</p>
+            <p><b>Phone:</b> {{ user.profile.phone }}</p>
         </div>
-        <div>
-            <h3>Account Information</h3>
-            <p><b>Username: {{ user.username }}</b></p>
-            <p><b>Email: {{ user.email }}</b></p>
-            <p><b>Account Created: {{ user.date_joined }}</b></p>
-            <p><b>Last Login: {{ user.last_login }}</b></p>
+        <div class="distance">
+            <h3>Account Activity</h3>
+            <p><b>Account Created:</b> {{ user.created_at }}</p>
+            <p><b>Last Login:</b> {{ user.last_login }}</p>
         </div>
     </div>
 {% endblock %}
