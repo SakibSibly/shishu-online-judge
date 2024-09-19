@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.http import urlencode
 from django.views import View
+from django.db.models import Q
 from .models import Problem, InputOutput, SolvedData
 from customtest.forms import CodeSubmissionForm
 from globals.executor import CodeExecutor
@@ -30,7 +31,7 @@ class ProblemsView(View):
 class FetchProblemView(View):
     def get(self, request, id):
         problems = Problem.objects.filter(id=id)
-        test_cases = InputOutput.objects.filter(problem=problems[0].id)
+        test_cases = InputOutput.objects.filter(Q(problem=problems[0].id) & Q(is_public=True))
         context = {
             'fetched_problem': problems,
             'test_cases': test_cases,
