@@ -63,11 +63,6 @@ class FetchProblemView(View):
                         'output': f"Test case failed:\n\nInput:\n{case[0]}\n\nExpected:\n{case[1]} \n\n\nReceived:\n{output[0]}",
                         'time': "Execution time: " + output[1] + " seconds"
                     }
-                    with open("test.txt", "w+") as file:
-                        file.write(output[0])
-                    with open("test2.txt", "w+") as file:
-                        file.write(case[1])
-                    
                     return render(request, 'customtest/output.html', context)
         
             context = {
