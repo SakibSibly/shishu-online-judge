@@ -15,7 +15,7 @@ class ProblemsView(View):
             record = SolvedData.objects.filter(user=request.user)
             solved_data = []
             for entry in record:
-                solved_data.append(entry.id)
+                solved_data.append(entry.problem.id)
         else:
             solved_data = None
         context = {
