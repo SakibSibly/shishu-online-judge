@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import CustomUser
 
 
 class Problem(models.Model):
@@ -25,6 +26,15 @@ class InputOutput(models.Model):
     input = models.TextField()
     output = models.TextField()
     is_public = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.problem.title
+
+
+class SolvedData(models.Model):
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    solved_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.problem.title
