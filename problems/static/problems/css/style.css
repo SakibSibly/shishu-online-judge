@@ -1,26 +1,16 @@
-#problem-list ul {
-    list-style: none;
-    margin-bottom: 0.8rem;
-    padding: 1rem;
+table {
+    display: block;
     border: 1px solid #ccc;
-    border-radius: 0.3rem;
-}
-
-#problem-list-main ul li {
-    display: block;
-    list-style: none;
-}
-
-#individual-problem li {
-    display: block;
-}
-
-#problem-list-main ul li a {
-    color: hsl(240, 95%, 36%);
-    text-decoration: none;
+    width: 100%;
 }
 
 .middle {
     display: block;
     text-align: center;
+}
+
+#solved-icon {
+    height: 0.5rem;
+    width: 0.5rem;
+    margin-right: 0.5rem;
 }

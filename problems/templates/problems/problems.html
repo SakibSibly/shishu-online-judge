@@ -5,16 +5,24 @@
 <div id="problem-list-main" class="distance">
     <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
     {% if fetched_problems %}
-        {% for problem in fetched_problems %}
-            <div>
-                <ul>
-                    <li>
-                        <b>{{ problem.id }}</b>
-                        <a href="{% url 'getproblem' problem.id %}">{{ problem.title }}</a>
-                    </li>
-                </ul>
-            </div>
-        {% endfor %}
+        <table class="middle">
+            <tr>
+                <th>Problem ID</th>
+                <th>Problem Title</th>
+                <th>Solved</th>
+            </tr>
+            {% for problem in fetched_problems %}
+                <tr>
+                    <td><b>{{ problem.id }}</b></td>
+                    <td><a href="{% url 'getproblem' problem.id %}">{{ problem.title }}</a></td>
+                    {% if solved_data and problem.id in solved_data %}
+                        <td><img src="{% static 'globals/image/solved.png' %}" alt="Solved" class="solved-icon"></td>
+                    {% else %}
+                        <td><img src="{% static 'globals/image/unsolved.png' %}" alt="Unsolved" class="solved-icon"></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
     {% else %}
     <ul>
         <li class="distance">No problems available</li>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils.http import urlencode
 from django.views import View
-from .models import Problem, InputOutput
+from .models import Problem, InputOutput, SolvedData
 from customtest.forms import CodeSubmissionForm
 from globals.executor import CodeExecutor
 
@@ -10,7 +10,18 @@ from globals.executor import CodeExecutor
 class ProblemsView(View):
     def get(self, request):
         fetched_problems = Problem.objects.all()
-        return render(request, 'problems/problems.html', {'fetched_problems': fetched_problems})
+        if request.user.is_authenticated:
+            record = SolvedData.objects.filter(user=request.user)
+            solved_data = []
+            for entry in record:
+                solved_data.append(entry.id)
+        else:
+            solved_data = None
+        context = {
+            'fetched_problems': fetched_problems,
+            'solved_data': solved_data
+        }
+        return render(request, 'problems/problems.html', context)
     
     def post(self, request):
         pass
@@ -62,6 +73,10 @@ class FetchProblemView(View):
                 'output': "All test cases passed",
                 'time': "Execution time: " + output[1] + " seconds"
             }
+
+            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user)
+            solved_record.save()
             return render(request, 'customtest/output.html', context)
+        
         login_url = reverse('login') + '?' + urlencode({'next': request.path})
         return redirect(login_url)
