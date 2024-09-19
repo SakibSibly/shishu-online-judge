@@ -71,11 +71,11 @@ select {
     padding: 0.2rem;
 }
 
-.system-logout {
+#system-logout {
     display: inline;
 }
 
-.system-logout button {
+#system-logout button {
     background: none;
     font: inherit;
     border: none;
