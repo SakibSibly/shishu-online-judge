@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # ...
+    "debug_toolbar",
+    # ...
     'crispy_forms',
     'crispy_bootstrap5',
     'accounts.apps.AccountsConfig',
@@ -56,6 +59,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # ...
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # ...
 ]
 
 ROOT_URLCONF = 'onlinejudge.urls'
@@ -136,3 +142,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 LOGIN_REDIRECT_URL = '/' # Fall back URL after login if next paremeter fails
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
