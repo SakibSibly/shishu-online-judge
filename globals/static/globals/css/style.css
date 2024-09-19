@@ -21,7 +21,8 @@ img {
     float: left;
 }
 
-#account-action {
+#account-action ul {
+    display: flex;
     float: right;
     margin: 1rem;
 }
@@ -69,6 +70,21 @@ select {
     font: inherit;
     padding: 0.2rem;
 }
+
+.system-logout {
+    display: inline;
+}
+
+.system-logout button {
+    background: none;
+    font: inherit;
+    border: none;
+    padding: 0;
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 #submit {
     font:inherit;
