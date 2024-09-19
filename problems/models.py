@@ -37,4 +37,4 @@ class SolvedData(models.Model):
     solved_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.problem.title
+        return f"{self.user.username} : {self.problem.title}"
