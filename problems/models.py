@@ -34,6 +34,9 @@ class InputOutput(models.Model):
 class SolvedData(models.Model):
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    source_code = models.TextField()
+    language = models.IntegerField()
+    run_time = models.FloatField()
     solved_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
