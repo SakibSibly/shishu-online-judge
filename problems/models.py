@@ -37,7 +37,8 @@ class SolvedData(models.Model):
     source_code = models.TextField()
     language = models.IntegerField()
     run_time = models.FloatField()
-    solved_at = models.DateTimeField(auto_now=True)
+    verdict = models.CharField(max_length=255)
+    submitted_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.user.username} : {self.problem.title}"
+        return f"{self.user.username} | {self.problem.title} | {self.verdict}"

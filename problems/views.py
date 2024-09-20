@@ -12,7 +12,7 @@ class ProblemsView(View):
     def get(self, request):
         fetched_problems = Problem.objects.all()
         if request.user.is_authenticated:
-            record = SolvedData.objects.filter(user=request.user)
+            record = SolvedData.objects.filter(Q(user=request.user) & Q(verdict="Accepted"))
             solved_data = []
             for entry in record:
                 solved_data.append(entry.problem.id)
@@ -63,6 +63,8 @@ class FetchProblemView(View):
                         'output': f"Test case failed:\n\nInput:\n{case[0]}\n\nExpected:\n{case[1]} \n\n\nReceived:\n{output[0]}",
                         'time': "Execution time: " + output[1] + " seconds"
                     }
+                    solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict=output[2])
+                    solved_record.save()
                     return render(request, 'customtest/output.html', context)
         
             context = {
@@ -70,7 +72,7 @@ class FetchProblemView(View):
                 'time': "Execution time: " + output[1] + " seconds"
             }
 
-            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]))
+            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict=output[2])
             solved_record.save()
             return render(request, 'customtest/output.html', context)
         
