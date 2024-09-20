@@ -26,7 +26,7 @@
                 {% endif %}
                 <li> &nbsp; | &nbsp;</li>
                 <li>
-                    <form id="system-logout" method="POST" action="{% url 'logout' %}">
+                    <form id="system-logout" method="POST" action="{% url 'logout' %}?next={% url 'home' %}">
                         {% csrf_token %}
                         <button type="submit">
                             Logout
