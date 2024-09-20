@@ -26,12 +26,16 @@
                 {% endif %}
                 <li> &nbsp; | &nbsp;</li>
                 <li>
-                    <form id="system-logout" method="POST" action="{% url 'logout' %}?next={% url 'home' %}">
-                        {% csrf_token %}
-                        <button type="submit">
-                            Logout
-                        </button>
-                    </form>
+                    {% if request.user.is_authenticated %}
+                        <form id="system-logout" method="POST" action="{% url 'logout' %}?next={% url 'home' %}">
+                            {% csrf_token %}
+                            <button type="submit">
+                                Logout
+                            </button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'register' %}?next={{ request.path }}">Register</a>
+                    {% endif %}
                 </li>
             </ul>
         </div>
