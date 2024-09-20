@@ -50,7 +50,7 @@ class CodeExecutor():
         if execution.returncode == 0:
             os.remove(c_file)
             os.remove("main")
-            return [execution.stdout, str(round(end_time - start_time, 3)), "Accepted"]
+            return [execution.stdout, str(round(end_time - start_time, 3)), "Success"]
         else:
             os.remove(c_file)
             os.remove("main")
@@ -93,7 +93,7 @@ class CodeExecutor():
         if execution.returncode == 0:
             os.remove(cpp_file)
             os.remove("main")
-            return [execution.stdout, str(round(end_time - start_time, 3)), "Accepted"]
+            return [execution.stdout, str(round(end_time - start_time, 3)), "Success"]
         else:
             os.remove(cpp_file)
             os.remove("main")
@@ -126,7 +126,7 @@ class CodeExecutor():
         
         if execution.returncode == 0:
             os.remove(python_file)
-            return [execution.stdout, str(round(end_time - start_time, 3)), "Accepted"]
+            return [execution.stdout, str(round(end_time - start_time, 3)), "Success"]
         else:
             os.remove(python_file)
             return ["Program didn't returned 0!\n" + execution.stderr, str(round(end_time - start_time, 3)), "Runtime Error"]

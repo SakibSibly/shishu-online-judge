@@ -57,13 +57,22 @@ class FetchProblemView(View):
                     output = executor.execute_cpp_code(source_code, case[0], case[2])
                 elif language == "2":
                     output = executor.execute_python_code(source_code, case[0], case[2])
+                
+                if output[2] != "Success":
+                    context = {
+                        'output': output[0],
+                        'time': "Execution time: " + output[1] + " seconds"
+                    }
+                    solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict=output[2])
+                    solved_record.save()
+                    return render(request, 'customtest/output.html', context)
 
                 if executor.compare_outputs(output[0].strip(), case[1].strip()) == False:
                     context = {
                         'output': f"Test case failed:\n\nInput:\n{case[0]}\n\nExpected:\n{case[1]} \n\n\nReceived:\n{output[0]}",
                         'time': "Execution time: " + output[1] + " seconds"
                     }
-                    solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict=output[2])
+                    solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict="Wrong Answer")
                     solved_record.save()
                     return render(request, 'customtest/output.html', context)
         
@@ -72,7 +81,7 @@ class FetchProblemView(View):
                 'time': "Execution time: " + output[1] + " seconds"
             }
 
-            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict=output[2])
+            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]), verdict="Accepted")
             solved_record.save()
             return render(request, 'customtest/output.html', context)
         
