@@ -70,7 +70,7 @@ class FetchProblemView(View):
                 'time': "Execution time: " + output[1] + " seconds"
             }
 
-            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user)
+            solved_record = SolvedData(problem=Problem.objects.filter(id=id)[0], user=request.user, source_code=source_code, language=eval(language), run_time=eval(output[1]))
             solved_record.save()
             return render(request, 'customtest/output.html', context)
         

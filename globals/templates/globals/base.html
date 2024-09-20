@@ -27,7 +27,7 @@
                 <li> &nbsp; | &nbsp;</li>
                 <li>
                     {% if request.user.is_authenticated %}
-                        <form id="system-logout" method="POST" action="{% url 'logout' %}?next={% url 'home' %}">
+                        <form id="system-logout" method="POST" action="{% url 'logout' %}?next={{ request.path }}">
                             {% csrf_token %}
                             <button type="submit">
                                 Logout
