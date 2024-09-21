@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div class="header-container">
         <div class="logo-container">
             <img src="{% static 'globals/image/main_logo.png' %}" alt="Shishu-Online-Judge">
@@ -19,7 +20,7 @@
                 <h5>Inspired by Codeforces</h5>
             </div>
         </div>
-    
+
         <div id="account-action">
             <ul>
                 {% if request.user.is_authenticated %}
@@ -44,7 +45,7 @@
         </div>
     </div>
 
-    <br> 
+    <br>
     <nav class="distance">
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'problems' %}">Problemset</a>
@@ -59,6 +60,7 @@
 
     {% block content %} {% endblock %}
 
+    <script src="{% static 'globals/js/script.js' %}"></script>
 </body>
 
 </html>
