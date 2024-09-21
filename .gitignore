@@ -6,3 +6,10 @@ __pycache__/
 
 # Text Files
 *.txt
+
+# Setup Files
+.vscode
+.idea
+
+# Compiled Python Files
+*.pyc
