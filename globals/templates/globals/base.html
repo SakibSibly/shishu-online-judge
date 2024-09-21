@@ -11,12 +11,15 @@
 </head>
 
 <body>
-    <div id="info">
-        <div>
+    <div class="header-container">
+        <div class="logo-container">
             <img src="{% static 'globals/image/main_logo.png' %}" alt="Shishu-Online-Judge">
-            <h1>Shishu Online Judge</h1>
-            <h5>Inspired by Codeforces</h5>
+            <div class="logo-text">
+                <h1>Shishu Online Judge</h1>
+                <h5>Inspired by Codeforces</h5>
+            </div>
         </div>
+    
         <div id="account-action">
             <ul>
                 {% if request.user.is_authenticated %}
@@ -40,6 +43,8 @@
             </ul>
         </div>
     </div>
+
+    <br> 
     <nav class="distance">
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>

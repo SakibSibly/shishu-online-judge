@@ -4,41 +4,17 @@
 {% block content %}
 <div id="problem-list-main" class="distance">
     <link rel="stylesheet" href="{% static 'problems/css/style.css' %}">
-    <style>
-        .middle {
-            border-spacing: 120px 10px; 
-            width: 100%;
-        }
-        .middle th, .middle td {
-            padding: 10px;
-        }
-        .tag {
-            font-family: Arial, sans-serif; 
-            font-size: 14px; 
-            letter-spacing: 0px;
-            {% comment %} font-weight: bold;  {% endcomment %}
-            {% comment %} text-transform: uppercase;  {% endcomment %}
-        }
-    </style>
     {% if fetched_problems %}
         <table class="middle">
             <tr>
                 <th>Problem ID</th>
                 <th>Problem Title</th>
-                <th>Difficulty</th>
-                <th>Tags</th>
                 <th>Solved</th>
             </tr>
             {% for problem in fetched_problems %}
                 <tr>
                     <td><b>{{ problem.id }}</b></td>
                     <td><a href="{% url 'getproblem' problem.id %}">{{ problem.title }}</a></td>
-                    <td>{{ problem.difficulty }}</td>
-                    <td>
-                        {% for tag in problem.tags %}
-                            <span class="tag">{{ tag }}</span>
-                        {% endfor %}
-                    </td>
                     {% if solved_data and problem.id in solved_data %}
                         <td><img src="{% static 'globals/image/solved.png' %}" alt="Solved" class="solved-icon"></td>
                     {% else %}
@@ -53,4 +29,4 @@
     </ul>
     {% endif %}
 </div>
-{% endblock %}
+{% endblock %}  
