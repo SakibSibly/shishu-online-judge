@@ -5,6 +5,7 @@ from problems.models import Problem
 class Contest(models.Model):
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField()
+    registered_users = models.IntegerField(default=0)
     end_time = models.DateTimeField()
     duration = models.DurationField()
     created_by = models.CharField(max_length=50)
