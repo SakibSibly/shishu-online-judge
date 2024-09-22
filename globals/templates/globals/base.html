@@ -8,14 +8,23 @@
     <title>Shishu-Online-Judge</title>
     <link rel="stylesheet" href="{% static 'globals/css/style.css' %}">
     <link rel="icon" href="{% static 'globals/image/favicon.ico' %}" type="image/x-icon">
+    <script src="{% static 'globals/js/script.js' %}"></script>
 </head>
 
 <body>
+    <div class="menu-icon" id="menuIcon" onclick="expand(this)">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
     <div id="info">
-        <div>
+        <div id="logo-container">
             <img src="{% static 'globals/image/main_logo.png' %}" alt="Shishu-Online-Judge">
-            <h1>Shishu Online Judge</h1>
-            <h5>Inspired by Codeforces</h5>
+            <div id="name">
+                <h1>Shishu Online Judge</h1>
+                <h5>Inspired by Codeforces</h5>
+            </div>
         </div>
         <div id="account-action">
             <ul>
@@ -24,7 +33,7 @@
                 {% else %}
                     <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                 {% endif %}
-                <li> &nbsp; | &nbsp;</li>
+                <li>|</li>
                 <li>
                     {% if request.user.is_authenticated %}
                         <form id="system-logout" method="POST" action="{% url 'logout' %}?next={{ request.path }}">
@@ -40,6 +49,7 @@
             </ul>
         </div>
     </div>
+    
     <nav class="distance">
         <ul>
             <li><a href="{% url 'home' %}">Home</a></li>
