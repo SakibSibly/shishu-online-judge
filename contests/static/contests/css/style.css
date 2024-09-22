@@ -1,0 +1,10 @@
+table {
+    display: block;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+table a {
+    text-decoration: underline;
+    color: blue;
+}

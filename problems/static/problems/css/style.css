@@ -4,6 +4,11 @@ table {
     width: 100%;
 }
 
+table a {
+    text-decoration: underline;
+    color: blue;
+}
+
 .middle {
     display: block;
     text-align: center;
