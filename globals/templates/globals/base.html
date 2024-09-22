@@ -11,16 +11,12 @@
 </head>
 
 <body>
-
-    <div class="header-container">
-        <div class="logo-container">
+    <div id="info">
+        <div>
             <img src="{% static 'globals/image/main_logo.png' %}" alt="Shishu-Online-Judge">
-            <div class="logo-text">
-                <h1>Shishu Online Judge</h1>
-                <h5>Inspired by Codeforces</h5>
-            </div>
+            <h1>Shishu Online Judge</h1>
+            <h5>Inspired by Codeforces</h5>
         </div>
-
         <div id="account-action">
             <ul>
                 {% if request.user.is_authenticated %}
@@ -44,23 +40,21 @@
             </ul>
         </div>
     </div>
-
-    <br>
     <nav class="distance">
-        <a href="{% url 'home' %}">Home</a>
-        <a href="{% url 'problems' %}">Problemset</a>
-        <a href="{% url 'contests' %}">Contests</a>
-        <a href="#">Leaderboard</a>
-        <a href="{% url 'customtest' %}">Custom Test</a>
-        <a href="{% url 'documentations' %}">Documentation</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <div class="animation start-home"></div>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'problems' %}">Problemset</a></li>
+            <li><a href="{% url 'contests' %}">Contests</a></li>
+            <li><a href="#">Leaderboard</a></li>
+            <li><a href="{% url 'customtest' %}">Custom Test</a></li>
+            <li><a href="{% url 'documentations' %}">Documentation</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </nav>
 
     {% block content %} {% endblock %}
 
-    <script src="{% static 'globals/js/script.js' %}"></script>
 </body>
 
 </html>
