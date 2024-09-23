@@ -1,5 +1,5 @@
 from django.db import models
-from problems.models import Problem
+from problems.models import Problem, SolvedData
 
 
 class Contest(models.Model):
@@ -22,3 +22,32 @@ class ContestProblem(models.Model):
 
     def __str__(self):
         return self.all_problems.title
+
+
+class ContestRegData(models.Model):
+    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    user = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user
+
+
+class ContestSubmission(models.Model):
+    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    user = models.CharField(max_length=50)
+    problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
+    submission_details = models.ForeignKey(SolvedData, on_delete=models.CASCADE)
+    submission_time = models.DateTimeField(auto_now_add=True)
+    verdict = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.user + " | " + self.verdict
+
+
+class ContestLeaderboard(models.Model):
+    contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
+    user = models.CharField(max_length=50)
+    score = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user + " | " + str(self.score)
