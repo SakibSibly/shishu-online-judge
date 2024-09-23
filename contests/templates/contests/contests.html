@@ -14,7 +14,7 @@
         {% for contest in all_contests %}
             <tr>
                 <td><b>{{ contest.id }}</b></td>
-                <td><a href="{% url 'fetch_contest' contest.id %}">{{ contest.name }}</a></td>
+                <td><a href="{% url 'fetch_contest' contest.id %}">{{ contest.title }}</a></td>
                 <td>{{ contest.registered_users }}</td>
             </tr>
         {% endfor %}

@@ -3,7 +3,7 @@ from problems.models import Problem, SolvedData
 
 
 class Contest(models.Model):
-    name = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     start_time = models.DateTimeField()
     registered_users = models.IntegerField(default=0)
     end_time = models.DateTimeField()
@@ -13,7 +13,7 @@ class Contest(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class ContestProblem(models.Model):
