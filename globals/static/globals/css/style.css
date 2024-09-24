@@ -91,18 +91,39 @@ nav ul{
     align-items: center;
     flex-wrap: wrap;
     background-color: whitesmoke;
-    border: 1px solid rgb(14, 188, 246);
+    /* border: 1px solid rgb(14, 188, 246); */
     border-radius: 10px;
-    box-shadow: 3px 4px 5px gray;
+   
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 -4px 6px rgba(0, 0, 0, 0.05), 
+                4px 0 6px rgba(0, 0, 0, 0.05), 
+                -4px 0 6px rgba(0, 0, 0, 0.05);
+
+    
+    padding: 0 20px;
 }
 
 nav ul li{
     margin: 0.5rem;
     padding: 0.5rem;
-    font-size: 16px;
+    font-size: 16px;;
     transition: transform 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
     flex-shrink: 0;
 }
+
+nav ul li a{
+    color: black;
+    /* font-weight: 550; */
+    text-decoration: none;
+}
+
+
+nav ul li a:hover {
+    color: #333;
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 5px; 
+}
+
 
 nav ul li:hover{
     transform: scale(1.2);
