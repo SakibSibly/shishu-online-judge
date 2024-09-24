@@ -1,9 +1,10 @@
 from django.db import models
 from problems.models import Problem, SolvedData
+from accounts.models import CustomUser
 
 
 class Contest(models.Model):
-    name = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
     start_time = models.DateTimeField()
     registered_users = models.IntegerField(default=0)
     end_time = models.DateTimeField()
@@ -13,7 +14,7 @@ class Contest(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 class ContestProblem(models.Model):
@@ -26,10 +27,10 @@ class ContestProblem(models.Model):
 
 class ContestRegData(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    user = models.CharField(max_length=50)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class ContestSubmission(models.Model):

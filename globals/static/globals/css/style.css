@@ -168,6 +168,22 @@ nav ul li:hover{
     }
 }
 
+#system-logout {
+    display: inline;
+}
+
+#system-logout button {
+    background: none;
+    font: inherit;
+    border: none;
+    padding: 0;
+    color: #000;
+    cursor: pointer;
+}
+
+.underline {
+    text-decoration: underline;
+}
 
 /* 
 textarea {
@@ -185,19 +201,6 @@ select {
     padding: 0.2rem;
 }
 
-#system-logout {
-    display: inline;
-}
-
-#system-logout button {
-    background: none;
-    font: inherit;
-    border: none;
-    padding: 0;
-    color: #000;
-    text-decoration: underline;
-    cursor: pointer;
-}
 
 
 #submit {
