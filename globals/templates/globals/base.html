@@ -29,21 +29,21 @@
         <div id="account-action">
             <ul>
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'profile' request.user.username %}">{{ request.user.username }}</a></li>
+                    <li><a class="underline" href="{% url 'profile' request.user.username %}">{{ request.user.username }}</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                    <li><a class="underline" href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
                 {% endif %}
                 <li>|</li>
                 <li>
                     {% if request.user.is_authenticated %}
                         <form id="system-logout" method="POST" action="{% url 'logout' %}?next={{ request.path }}">
                             {% csrf_token %}
-                            <button type="submit">
+                            <button class="underline" type="submit">
                                 Logout
                             </button>
                         </form>
                     {% else %}
-                        <a href="{% url 'register' %}?next={{ request.path }}">Register</a>
+                        <a class="underline" href="{% url 'register' %}?next={{ request.path }}">Register</a>
                     {% endif %}
                 </li>
             </ul>
