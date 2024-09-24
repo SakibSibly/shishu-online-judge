@@ -1,5 +1,6 @@
 from django.db import models
 from problems.models import Problem, SolvedData
+from accounts.models import CustomUser
 
 
 class Contest(models.Model):
@@ -26,10 +27,10 @@ class ContestProblem(models.Model):
 
 class ContestRegData(models.Model):
     contest = models.ForeignKey(Contest, on_delete=models.CASCADE)
-    user = models.CharField(max_length=50)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
 
 class ContestSubmission(models.Model):
