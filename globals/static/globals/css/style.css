@@ -63,6 +63,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -15px; 
+    margin-bottom: 15px; 
 }
 
 #logo-container img{
@@ -83,6 +85,11 @@ body {
 
 #account-action ul li{
     margin: 0.5rem;
+}
+
+nav {
+    margin-top: 25px; 
+    margin-bottom: 25px; 
 }
 
 nav ul{
@@ -113,8 +120,12 @@ nav ul li{
 
 nav ul li a{
     color: black;
+    font-size: 16px;
     /* font-weight: 550; */
     text-decoration: none;
+    padding: 0 15px;
+   
+    transition: color 0.3s ease, background 0.3s ease;
 }
 
 
