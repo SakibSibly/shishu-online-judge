@@ -185,6 +185,17 @@ nav ul li:hover{
     text-decoration: underline;
 }
 
+
+ul {
+    display: inline-block;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+
 /* 
 textarea {
     font: inherit;
