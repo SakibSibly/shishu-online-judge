@@ -49,7 +49,7 @@ body {
 }
 
 .menu-icon.cross span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(9px, -9px);
 }
 
 
@@ -63,6 +63,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: -15px; 
+    margin-bottom: 15px; 
 }
 
 #logo-container img{
@@ -85,15 +87,27 @@ body {
     margin: 0.5rem;
 }
 
+nav {
+    margin-top: 25px; 
+    margin-bottom: 25px; 
+}
+
 nav ul{
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     background-color: whitesmoke;
-    border: 1px solid rgb(14, 188, 246);
+    /* border: 1px solid rgb(14, 188, 246); */
     border-radius: 10px;
-    box-shadow: 3px 4px 5px gray;
+   
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 -4px 6px rgba(0, 0, 0, 0.05), 
+                4px 0 6px rgba(0, 0, 0, 0.05), 
+                -4px 0 6px rgba(0, 0, 0, 0.05);
+
+    
+    padding: 0 20px;
 }
 
 nav ul li{
@@ -103,6 +117,24 @@ nav ul li{
     transition: transform 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
     flex-shrink: 0;
 }
+
+nav ul li a{
+    color: black;
+    font-size: 16px;
+    /* font-weight: 550; */
+    text-decoration: none;
+    padding: 0 15px;
+   
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+
+nav ul li a:hover {
+    color: #333;
+    background: rgba(255, 255, 255, 0.2); 
+    border-radius: 5px; 
+}
+
 
 nav ul li:hover{
     transform: scale(1.2);
@@ -152,6 +184,17 @@ nav ul li:hover{
 .underline {
     text-decoration: underline;
 }
+
+
+ul {
+    display: inline-block;
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
 
 /* 
 textarea {
